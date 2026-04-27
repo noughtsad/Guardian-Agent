@@ -1,0 +1,27 @@
+# Logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Environment files — add your own API keys locally
+.env
+.env.local
+
+# Build output (run `npm run build` in mcp-server/ before starting)
+dist/
+build/
+
+# Agent runtime database (auto-created on first boot)
+agent/data/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Agent.md

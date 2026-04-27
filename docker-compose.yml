@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  agent:
+    build: ./agent
+    ports:
+      - "3000:3000"
+    environment:
+      - LLM_PROVIDER=${LLM_PROVIDER:-gemini}
+      - LLM_API_KEY=${LLM_API_KEY}
+      - LLM_MODEL=${LLM_MODEL:-gemini-2.5-flash}
+      - DB_PATH=/data/armoriq.db
+      - DASHBOARD_ORIGIN=http://localhost:5173
+    volumes:
+      - db-data:/data
+      - ./mcp-server/dist:/app/mcp-server/dist:ro
+    depends_on:
+      - mcp-server
+
+  mcp-server:
+    build: ./mcp-server
+    # stdio — agent spawns it directly; this entry is for build only
+
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_API_BASE=http://localhost:3000
+      - VITE_WS_URL=ws://localhost:3000/ws
+
+volumes:
+  db-data:

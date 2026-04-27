@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 #0f172a;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface-800/50 backdrop-blur-xl border border-surface-700/50 rounded-xl;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-brand-500/5;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-medium rounded-lg transition-all duration-200 active:scale-95 shadow-lg shadow-brand-600/20;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-surface-700 hover:bg-surface-600 text-surface-200 font-medium rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-red-600/80 hover:bg-red-500 text-white font-medium rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .btn-success {
+    @apply px-4 py-2 bg-emerald-600/80 hover:bg-emerald-500 text-white font-medium rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 bg-surface-900/80 border border-surface-700 rounded-lg text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all duration-200;
+  }
+
+  .select-field {
+    @apply w-full px-3 py-2 bg-surface-900/80 border border-surface-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all duration-200 appearance-none cursor-pointer;
+  }
+
+  .badge {
+    @apply px-2 py-0.5 text-xs font-semibold rounded-full;
+  }
+
+  .badge-block {
+    @apply badge bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+
+  .badge-approval {
+    @apply badge bg-amber-500/20 text-amber-400 border border-amber-500/30;
+  }
+
+  .badge-transform {
+    @apply badge bg-blue-500/20 text-blue-400 border border-blue-500/30;
+  }
+
+  .badge-validation {
+    @apply badge bg-purple-500/20 text-purple-400 border border-purple-500/30;
+  }
+
+  .badge-active {
+    @apply badge bg-emerald-500/20 text-emerald-400 border border-emerald-500/30;
+  }
+
+  .badge-inactive {
+    @apply badge bg-surface-600/30 text-surface-400 border border-surface-600/30;
+  }
+}
