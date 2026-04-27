@@ -88,6 +88,18 @@ const RESTRICTION_RANK: Record<string, number> = {
   ALLOW: 1,
 };
 
+function matchesToolPattern(toolCall: ToolCall, toolPattern: string): boolean {
+  if (minimatch(toolCall.name, toolPattern)) {
+    return true;
+  }
+
+  if (!toolCall.serverName || toolCall.serverName === 'unknown') {
+    return false;
+  }
+
+  return minimatch(`${toolCall.serverName}/${toolCall.name}`, toolPattern);
+}
+
 /**
  * Evaluates a tool call against a set of rules.
  * Returns the policy decision.
@@ -115,7 +127,7 @@ export function evaluate(toolCall: ToolCall, rules: Rule[]): PolicyDecision {
   // Step 3-5: Test each rule
   for (const rule of sorted) {
     // Test tool name pattern (glob matching)
-    if (!minimatch(toolCall.name, rule.toolPattern)) {
+    if (!matchesToolPattern(toolCall, rule.toolPattern)) {
       continue;
     }
 

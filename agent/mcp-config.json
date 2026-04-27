@@ -10,5 +10,11 @@
     "transport": "stdio",
     "command": "npx",
     "args": ["tsx", "../mcp-server-chaos/src/index.ts"]
+  },
+  {
+    "name": "filesystem",
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp/runbooks"]
   }
 ]
