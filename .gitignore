@@ -25,3 +25,5 @@ agent/data/
 .DS_Store
 Thumbs.db
 Agent.md
+ChaosObservability_Server.md
+Filesystem_Server.md
