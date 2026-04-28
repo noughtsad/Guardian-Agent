@@ -1,4 +1,4 @@
-# 🛡️ Guardian Agent
+# Guardian Agent
 
 A full-stack AI agent application with real-time policy guardrails and an admin dashboard.
 

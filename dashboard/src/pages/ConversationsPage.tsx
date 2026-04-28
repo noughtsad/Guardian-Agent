@@ -36,19 +36,19 @@ export function ConversationsPage() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-emerald-600/20 text-emerald-400">
+                <div className="p-2.5 rounded-xl bg-brand-tertiary/20 text-tertiary">
                     <MessageSquare size={24} />
                 </div>
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Conversations</h1>
-                    <p className="text-sm text-surface-400">
+                    <h1 className="text-2xl font-bold text-on-surface">Conversations</h1>
+                    <p className="text-sm text-on-surface-variant">
                         {conversations.length} conversation{conversations.length !== 1 ? 's' : ''}
                     </p>
                 </div>
             </div>
 
             {/* Chat Input */}
-            <div className="glass-card p-4">
+            <div className="soft-card p-4">
                 <div className="flex items-center gap-3">
                     <input
                         type="text"
@@ -69,20 +69,20 @@ export function ConversationsPage() {
                     </button>
                 </div>
                 {chatConvId && (
-                    <div className="mt-2 text-xs text-surface-500">
-                        Conversation: <code className="text-surface-400">{chatConvId.slice(0, 8)}...</code>
+                    <div className="mt-2 text-xs text-on-surface-variant">
+                        Conversation: <code className="text-brand-primary">{chatConvId.slice(0, 8)}...</code>
                         <button
                             onClick={() => { setChatConvId(undefined); setChatReply(null); }}
-                            className="ml-2 text-brand-400 hover:text-brand-300"
+                            className="ml-2 text-brand-secondary hover:text-brand-primary"
                         >
                             New conversation
                         </button>
                     </div>
                 )}
                 {chatReply && (
-                    <div className="mt-3 p-3 bg-surface-900/80 rounded-lg">
-                        <div className="text-xs text-emerald-400 mb-1">Agent Reply:</div>
-                        <div className="text-sm text-surface-200 whitespace-pre-wrap">{chatReply}</div>
+                    <div className="mt-3 p-3 bg-brand-bg rounded-lg border border-brand-border">
+                        <div className="text-xs text-brand-tertiary mb-1 font-medium">Agent Reply:</div>
+                        <div className="text-sm text-on-surface whitespace-pre-wrap">{chatReply}</div>
                     </div>
                 )}
             </div>
@@ -90,44 +90,44 @@ export function ConversationsPage() {
             {/* Conversation List */}
             {loading ? (
                 <div className="flex justify-center py-8">
-                    <Loader2 size={24} className="animate-spin text-brand-400" />
+                    <Loader2 size={24} className="animate-spin text-brand-primary" />
                 </div>
             ) : conversations.length === 0 ? (
-                <div className="glass-card p-12 text-center">
-                    <MessageSquare size={48} className="mx-auto text-surface-600 mb-4" />
-                    <h3 className="text-lg font-medium text-surface-300 mb-2">No conversations yet</h3>
-                    <p className="text-surface-500">Send a message above to start a conversation with the agent.</p>
+                <div className="soft-card p-12 text-center shadow-none border-dashed border-2 hover:border-brand-primary/30 transition-colors">
+                    <MessageSquare size={48} className="mx-auto text-on-surface-variant mb-4 opacity-50" />
+                    <h3 className="text-lg font-medium text-on-surface mb-2">No conversations yet</h3>
+                    <p className="text-on-surface-variant">Send a message above to start a conversation with the agent.</p>
                 </div>
             ) : (
                 <div className="space-y-2">
                     {conversations.map((conv) => (
                         <div key={conv.id}>
                             <div
-                                className="glass-card-hover p-4 cursor-pointer"
+                                className="soft-card-hover p-4 cursor-pointer"
                                 onClick={() => setSelectedId(selectedId === conv.id ? null : conv.id)}
                             >
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3 min-w-0">
                                         {selectedId === conv.id ? (
-                                            <ChevronDown size={16} className="text-surface-400 flex-shrink-0" />
+                                            <ChevronDown size={16} className="text-on-surface-variant flex-shrink-0" />
                                         ) : (
-                                            <ChevronRight size={16} className="text-surface-400 flex-shrink-0" />
+                                            <ChevronRight size={16} className="text-on-surface-variant flex-shrink-0" />
                                         )}
                                         <div className="min-w-0 flex-1">
                                             <div className="flex items-center gap-2">
-                                                <code className="text-sm font-mono text-brand-300">{conv.id.slice(0, 8)}...</code>
-                                                <span className="badge bg-surface-700 text-surface-300">{conv.turnCount} turns</span>
+                                                <code className="text-sm font-mono text-brand-primary">{conv.id.slice(0, 8)}...</code>
+                                                <span className="badge bg-brand-bg text-on-surface-variant border border-brand-border">{conv.turnCount} turns</span>
                                             </div>
                                             {conv.lastMessage && (
-                                                <p className="text-sm text-surface-400 truncate mt-1">{conv.lastMessage}</p>
+                                                <p className="text-sm text-on-surface-variant truncate mt-1">{conv.lastMessage}</p>
                                             )}
                                         </div>
                                     </div>
                                     <div className="text-right flex-shrink-0">
-                                        <div className="text-xs text-surface-500">
+                                        <div className="text-xs text-on-surface-variant">
                                             {new Date(conv.updatedAt).toLocaleString()}
                                         </div>
-                                        <div className="text-xs text-surface-600 mt-0.5">
+                                        <div className="text-xs text-on-surface-variant mt-0.5 opacity-70">
                                             {conv.totalTokensIn + conv.totalTokensOut} tokens
                                         </div>
                                     </div>
@@ -139,7 +139,7 @@ export function ConversationsPage() {
                                 <div className="ml-6 mt-2 mb-4">
                                     {turnsLoading ? (
                                         <div className="flex justify-center py-4">
-                                            <Loader2 size={20} className="animate-spin text-brand-400" />
+                                            <Loader2 size={20} className="animate-spin text-brand-primary" />
                                         </div>
                                     ) : (
                                         <ConversationLog

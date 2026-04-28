@@ -12,7 +12,7 @@ interface ConversationLogProps {
 export function ConversationLog({ turns, totalTokensIn, totalTokensOut }: ConversationLogProps) {
     if (turns.length === 0) {
         return (
-            <div className="text-center py-8 text-surface-500">
+            <div className="text-center py-8 text-on-surface-variant">
                 No conversation turns yet
             </div>
         );
@@ -26,16 +26,16 @@ export function ConversationLog({ turns, totalTokensIn, totalTokensOut }: Conver
                 {turns.map((turn) => (
                     <div
                         key={turn.id}
-                        className={`glass-card p-4 animate-fade-in ${turn.blocked ? 'border-red-500/30' : ''
+                        className={`soft-card p-4 animate-fade-in ${turn.blocked ? 'border-error' : ''
                             }`}
                     >
                         <div className="flex items-start gap-3">
                             {/* Avatar */}
                             <div className={`p-2 rounded-lg ${turn.role === 'user'
-                                    ? 'bg-brand-600/20 text-brand-400'
-                                    : turn.role === 'assistant'
-                                        ? 'bg-emerald-600/20 text-emerald-400'
-                                        : 'bg-surface-600/20 text-surface-400'
+                                ? 'bg-brand-primary/10 text-brand-primary'
+                                : turn.role === 'assistant'
+                                    ? 'bg-brand-tertiary/20 text-tertiary'
+                                    : 'bg-brand-secondary/20 text-brand-secondary'
                                 }`}>
                                 {turn.role === 'user' ? <User size={16} /> :
                                     turn.role === 'assistant' ? <Bot size={16} /> :
@@ -45,11 +45,11 @@ export function ConversationLog({ turns, totalTokensIn, totalTokensOut }: Conver
                             <div className="flex-1 min-w-0">
                                 {/* Header */}
                                 <div className="flex items-center gap-2 mb-1">
-                                    <span className="text-sm font-medium text-surface-300 capitalize">
+                                    <span className="text-sm font-medium text-on-surface capitalize">
                                         {turn.role}
                                     </span>
                                     {turn.toolName && (
-                                        <code className="px-1.5 py-0.5 bg-surface-900/80 rounded text-xs font-mono text-brand-300">
+                                        <code className="px-1.5 py-0.5 bg-brand-bg border border-brand-border rounded text-xs font-mono text-brand-primary">
                                             {turn.toolName}
                                         </code>
                                     )}
@@ -59,21 +59,21 @@ export function ConversationLog({ turns, totalTokensIn, totalTokensOut }: Conver
                                             BLOCKED
                                         </span>
                                     )}
-                                    <span className="text-xs text-surface-600 ml-auto">
+                                    <span className="text-xs text-on-surface-variant ml-auto">
                                         {new Date(turn.createdAt).toLocaleTimeString()}
                                     </span>
                                 </div>
 
                                 {/* Content */}
                                 {turn.content && (
-                                    <div className="text-sm text-surface-200 whitespace-pre-wrap break-words">
+                                    <div className="text-sm text-on-surface whitespace-pre-wrap break-words">
                                         {turn.content}
                                     </div>
                                 )}
 
                                 {/* Block Reason */}
                                 {turn.blockReason && (
-                                    <div className="mt-2 p-2 bg-red-500/10 rounded-lg border border-red-500/20 text-xs text-red-300">
+                                    <div className="mt-2 p-2 bg-error-container rounded-lg border border-error-container text-xs text-on-error-container">
                                         ⚠️ {turn.blockReason}
                                     </div>
                                 )}
@@ -81,20 +81,20 @@ export function ConversationLog({ turns, totalTokensIn, totalTokensOut }: Conver
                                 {/* Tool Input/Output */}
                                 {turn.toolInput && (
                                     <details className="mt-2">
-                                        <summary className="text-xs text-surface-500 cursor-pointer hover:text-surface-400">
+                                        <summary className="text-xs text-on-surface-variant cursor-pointer hover:text-on-surface">
                                             Tool Input
                                         </summary>
-                                        <pre className="mt-1 p-2 bg-surface-900/80 rounded text-xs font-mono text-surface-300 overflow-x-auto">
+                                        <pre className="mt-1 p-2 bg-brand-bg rounded text-xs font-mono text-on-surface overflow-x-auto border border-brand-border">
                                             {JSON.stringify(JSON.parse(turn.toolInput), null, 2)}
                                         </pre>
                                     </details>
                                 )}
                                 {turn.toolResult && !turn.content && (
                                     <details className="mt-2" open>
-                                        <summary className="text-xs text-surface-500 cursor-pointer hover:text-surface-400">
+                                        <summary className="text-xs text-on-surface-variant cursor-pointer hover:text-on-surface">
                                             Tool Result
                                         </summary>
-                                        <pre className="mt-1 p-2 bg-surface-900/80 rounded text-xs font-mono text-surface-300 overflow-x-auto max-h-48">
+                                        <pre className="mt-1 p-2 bg-brand-bg rounded text-xs font-mono text-on-surface overflow-x-auto max-h-48 border border-brand-border">
                                             {(() => {
                                                 try { return JSON.stringify(JSON.parse(turn.toolResult), null, 2); }
                                                 catch { return turn.toolResult; }
@@ -105,7 +105,7 @@ export function ConversationLog({ turns, totalTokensIn, totalTokensOut }: Conver
 
                                 {/* Token info */}
                                 {(turn.tokensIn > 0 || turn.tokensOut > 0) && (
-                                    <div className="mt-2 text-xs text-surface-600">
+                                    <div className="mt-2 text-xs text-on-surface-variant">
                                         Tokens: {turn.tokensIn} in / {turn.tokensOut} out
                                     </div>
                                 )}

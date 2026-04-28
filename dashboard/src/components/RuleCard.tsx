@@ -22,29 +22,32 @@ export function RuleCard({ rule, onToggle, onDelete, onEdit }: RuleCardProps) {
 
     return (
         <div
-            className={`glass-card-hover p-5 animate-fade-in cursor-pointer ${!rule.enabled ? 'opacity-50' : ''
+            className={`soft-card-hover p-5 animate-fade-in cursor-pointer relative group ${!rule.enabled ? 'opacity-50 grayscale-[0.5]' : ''
                 }`}
             onClick={() => onEdit(rule)}
         >
-            <div className="flex items-start justify-between gap-3">
+            <div className="flex items-start justify-between gap-3 relative z-10">
                 <div className="flex items-start gap-3 flex-1 min-w-0">
-                    <div className={`p-2 rounded-lg bg-surface-700/50 ${config.color}`}>
+                    <div className={`p-2 rounded-xl bg-white border border-brand-border ${config.color} group-hover:scale-105 transition-transform duration-300 shadow-ambient-sm`}>
                         <Icon size={18} />
                     </div>
                     <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-white truncate">{rule.name}</h3>
+                            <h3 className="font-semibold text-on-surface truncate">{rule.name}</h3>
                             <span className={config.badgeClass}>{rule.ruleType.replace('_', ' ')}</span>
                         </div>
-                        <div className="flex items-center gap-3 text-sm text-surface-400">
-                            <code className="px-1.5 py-0.5 bg-surface-900/80 rounded text-brand-300 font-mono text-xs">
+                        <div className="flex items-center gap-3 text-sm text-on-surface-variant">
+                            <code className="px-2 py-0.5 bg-brand-bg rounded border border-brand-border text-brand-primary font-mono text-xs shadow-inner">
                                 {rule.toolPattern}
                             </code>
-                            <span>Priority: {rule.priority}</span>
+                            <span className="flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-brand-primary"></span>
+                                Priority: {rule.priority}
+                            </span>
                         </div>
                         {rule.condition && (
-                            <div className="mt-2 text-xs text-surface-500">
-                                Condition: <code className="text-surface-300">{rule.condition.field} {rule.condition.operator} "{rule.condition.value}"</code>
+                            <div className="mt-2 text-xs text-on-surface-variant">
+                                Condition: <code className="text-on-surface font-medium">{rule.condition.field} {rule.condition.operator} "{rule.condition.value}"</code>
                             </div>
                         )}
                     </div>

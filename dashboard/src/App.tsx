@@ -20,18 +20,18 @@ export default function App() {
     const pendingCount = approvals.filter(a => a.status === 'pending').length;
 
     return (
-        <div className="min-h-screen bg-surface-950 flex">
+        <div className="min-h-screen bg-transparent flex text-on-surface">
             {/* Sidebar */}
-            <aside className="w-64 bg-surface-900/50 border-r border-surface-800 flex flex-col fixed h-full">
+            <aside className="w-64 bg-brand-neutral border-r border-brand-border flex flex-col fixed h-full z-10 shadow-ambient-sm">
                 {/* Logo */}
-                <div className="p-6 border-b border-surface-800">
+                <div className="p-6 border-b border-brand-border">
                     <div className="flex items-center gap-3">
-                        <div className="p-2 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 shadow-lg shadow-brand-600/20">
-                            <Shield size={22} className="text-white" />
-                        </div>
+                        {/* <div className="p-2 rounded-xl bg-brand-primary/10 relative group">
+                            <Shield size={22} className="text-brand-primary group-hover:scale-110 transition-transform duration-300" />
+                        </div> */}
                         <div>
-                            <h1 className="text-lg font-bold text-white tracking-tight">ArmorIQ</h1>
-                            <p className="text-xs text-surface-400">Guarded AI Agent</p>
+                            <h1 className="text-lg font-bold text-brand-primary tracking-tight">Guardian Agent</h1>
+                            <p className="text-xs text-on-surface-variant">Admin Dashboard</p>
                         </div>
                     </div>
                 </div>
@@ -43,16 +43,16 @@ export default function App() {
                             key={to}
                             to={to}
                             className={({ isActive }) =>
-                                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
-                                    ? 'bg-brand-600/20 text-brand-400 shadow-sm'
-                                    : 'text-surface-400 hover:text-surface-200 hover:bg-surface-800/50'
+                                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 relative group ${isActive
+                                    ? 'bg-brand-primary/10 text-brand-primary shadow-ambient-sm'
+                                    : 'text-on-surface-variant hover:text-on-surface hover:bg-black/5'
                                 }`
                             }
                         >
-                            <Icon size={18} />
+                            <Icon size={18} className={`transition-transform duration-300 group-hover:scale-110`} />
                             <span>{label}</span>
                             {label === 'Approvals' && pendingCount > 0 && (
-                                <span className="ml-auto px-2 py-0.5 text-xs font-bold bg-red-500 text-white rounded-full animate-pulse">
+                                <span className="ml-auto px-2 py-0.5 text-xs font-bold bg-error text-on-error rounded-full animate-pulse">
                                     {pendingCount}
                                 </span>
                             )}
@@ -61,8 +61,8 @@ export default function App() {
                 </nav>
 
                 {/* Footer */}
-                <div className="p-4 border-t border-surface-800">
-                    <div className="flex items-center gap-2 text-xs text-surface-600">
+                <div className="p-4 border-t border-brand-border">
+                    <div className="flex items-center gap-2 text-xs text-on-surface-variant">
                         <Activity size={12} className="text-emerald-500" />
                         <span>System Online</span>
                     </div>

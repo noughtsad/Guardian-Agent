@@ -49,41 +49,41 @@ export function ApprovalRequestCard({ approval }: ApprovalRequestProps) {
         setShowRejectInput(false);
     };
 
-    const urgency = timeLeft < 30 ? 'border-red-500/50 animate-pulse-glow' :
-        timeLeft < 60 ? 'border-amber-500/50' : '';
+    const urgency = timeLeft < 30 ? 'border-error animate-pulse-glow' :
+        timeLeft < 60 ? 'border-brand-primary' : '';
 
     return (
-        <div className={`glass-card p-5 animate-slide-up ${urgency}`}>
+        <div className={`soft-card p-5 animate-slide-up ${urgency}`}>
             <div className="flex items-start justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
-                    <div className="p-2 rounded-lg bg-amber-500/20 text-amber-400">
+                    <div className="p-2 rounded-lg bg-error-container text-on-error-container">
                         <AlertTriangle size={18} />
                     </div>
                     <div>
-                        <h3 className="font-semibold text-white">Approval Required</h3>
-                        <code className="text-sm font-mono text-brand-300">{approval.toolCall.name}</code>
+                        <h3 className="font-semibold text-on-surface">Approval Required</h3>
+                        <code className="text-sm font-mono text-brand-primary">{approval.toolCall.name}</code>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-1.5 text-sm">
-                    <Clock size={14} className={timeLeft < 30 ? 'text-red-400' : 'text-surface-400'} />
-                    <span className={timeLeft < 30 ? 'text-red-400 font-medium' : 'text-surface-400'}>
+                    <Clock size={14} className={timeLeft < 30 ? 'text-error' : 'text-on-surface-variant'} />
+                    <span className={timeLeft < 30 ? 'text-error font-medium' : 'text-on-surface-variant'}>
                         {timeLeft}s
                     </span>
                 </div>
             </div>
 
             {/* Tool Input */}
-            <div className="mb-4 p-3 bg-surface-900/80 rounded-lg">
-                <div className="text-xs text-surface-500 mb-1">Tool Input:</div>
-                <pre className="text-sm font-mono text-surface-200 overflow-x-auto max-h-40">
+            <div className="mb-4 p-3 bg-brand-bg rounded-lg border border-brand-border">
+                <div className="text-xs text-on-surface-variant mb-1">Tool Input:</div>
+                <pre className="text-sm font-mono text-on-surface overflow-x-auto max-h-40">
                     {JSON.stringify(approval.toolCall.input, null, 2)}
                 </pre>
             </div>
 
             {/* Server */}
-            <div className="text-xs text-surface-500 mb-4">
-                Server: <span className="text-surface-300">{approval.toolCall.serverName}</span>
+            <div className="text-xs text-on-surface-variant mb-4">
+                Server: <span className="text-on-surface">{approval.toolCall.serverName}</span>
             </div>
 
             {/* Reject reason input */}

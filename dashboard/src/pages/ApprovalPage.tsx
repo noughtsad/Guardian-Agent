@@ -17,12 +17,12 @@ export function ApprovalPage() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-amber-600/20 text-amber-400">
+                <div className="p-2.5 rounded-xl bg-error-container text-on-error-container">
                     <AlertTriangle size={24} />
                 </div>
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Approvals</h1>
-                    <p className="text-sm text-surface-400">
+                    <h1 className="text-2xl font-bold text-on-surface">Approvals</h1>
+                    <p className="text-sm text-on-surface-variant">
                         {pendingApprovals.length} pending approval{pendingApprovals.length !== 1 ? 's' : ''}
                     </p>
                 </div>
@@ -30,10 +30,10 @@ export function ApprovalPage() {
 
             {/* Pending Approvals */}
             {pendingApprovals.length === 0 ? (
-                <div className="glass-card p-12 text-center">
-                    <CheckCircle size={48} className="mx-auto text-emerald-600 mb-4" />
-                    <h3 className="text-lg font-medium text-surface-300 mb-2">All clear!</h3>
-                    <p className="text-surface-500">No pending approval requests. They'll appear here in real-time.</p>
+                <div className="soft-card p-12 text-center shadow-none border-dashed border-2 hover:border-brand-primary/30">
+                    <CheckCircle size={48} className="mx-auto text-brand-tertiary mb-4" />
+                    <h3 className="text-lg font-medium text-on-surface mb-2">All clear!</h3>
+                    <p className="text-on-surface-variant">No pending approval requests. They'll appear here in real-time.</p>
                 </div>
             ) : (
                 <div className="grid gap-4">

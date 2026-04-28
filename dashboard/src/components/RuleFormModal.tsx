@@ -82,12 +82,12 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
             {/* Modal */}
-            <div className="relative glass-card p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up">
+            <div className="relative bg-white shadow-ambient-lg rounded-xl border border-brand-border p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto animate-slide-up">
                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-semibold text-white">
+                    <h2 className="text-xl font-semibold text-on-surface">
                         {editRule ? 'Edit Rule' : 'New Rule'}
                     </h2>
-                    <button onClick={onClose} className="p-1 text-surface-400 hover:text-white transition-colors">
+                    <button onClick={onClose} className="p-1 text-on-surface-variant hover:text-on-surface transition-colors">
                         <X size={20} />
                     </button>
                 </div>
@@ -95,7 +95,7 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Name */}
                     <div>
-                        <label className="block text-sm text-surface-300 mb-1">Name</label>
+                        <label className="block text-sm text-on-surface-variant mb-1">Name</label>
                         <input
                             type="text"
                             className="input-field"
@@ -108,7 +108,7 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
 
                     {/* Rule Type */}
                     <div>
-                        <label className="block text-sm text-surface-300 mb-1">Rule Type</label>
+                        <label className="block text-sm text-on-surface-variant mb-1">Rule Type</label>
                         <select
                             className="select-field"
                             value={formData.ruleType}
@@ -123,7 +123,7 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
 
                     {/* Tool Pattern */}
                     <div>
-                        <label className="block text-sm text-surface-300 mb-1">Tool Pattern</label>
+                        <label className="block text-sm text-on-surface-variant mb-1">Tool Pattern</label>
                         <input
                             type="text"
                             className="input-field font-mono"
@@ -132,12 +132,12 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
                             placeholder="e.g., delete_* or db_delete_record"
                             required
                         />
-                        <p className="text-xs text-surface-500 mt-1">Supports glob patterns: * matches any, ** recursion</p>
+                        <p className="text-xs text-on-surface-variant mt-1">Supports glob patterns: * matches any, ** recursion</p>
                     </div>
 
                     {/* Priority */}
                     <div>
-                        <label className="block text-sm text-surface-300 mb-1">Priority (lower = higher precedence)</label>
+                        <label className="block text-sm text-on-surface-variant mb-1">Priority (lower = higher precedence)</label>
                         <input
                             type="number"
                             className="input-field"
@@ -149,8 +149,8 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
                     </div>
 
                     {/* Condition (Optional) */}
-                    <div className="glass-card p-4">
-                        <label className="block text-sm text-surface-300 mb-2">Condition (Optional)</label>
+                    <div className="soft-card p-4 shadow-none">
+                        <label className="block text-sm text-on-surface-variant mb-2">Condition (Optional)</label>
                         <div className="grid grid-cols-3 gap-2">
                             <input
                                 type="text"
@@ -182,7 +182,7 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
                     {/* Timeout (for REQUIRE_APPROVAL) */}
                     {formData.ruleType === 'REQUIRE_APPROVAL' && (
                         <div>
-                            <label className="block text-sm text-surface-300 mb-1">Timeout (seconds)</label>
+                            <label className="block text-sm text-on-surface-variant mb-1">Timeout (seconds)</label>
                             <input
                                 type="number"
                                 className="input-field"
@@ -197,7 +197,7 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
                     {/* Transform Function (for TRANSFORM) */}
                     {(formData.ruleType === 'TRANSFORM' || formData.ruleType === 'INPUT_VALIDATION') && (
                         <div>
-                            <label className="block text-sm text-surface-300 mb-1">Transform Expression</label>
+                            <label className="block text-sm text-on-surface-variant mb-1">Transform Expression</label>
                             <textarea
                                 className="input-field font-mono text-sm h-24 resize-y"
                                 value={formData.transformFn}
@@ -214,9 +214,9 @@ export function RuleFormModal({ isOpen, onClose, onSubmit, editRule }: RuleFormM
                             id="enabled"
                             checked={formData.enabled}
                             onChange={(e) => setFormData({ ...formData, enabled: e.target.checked })}
-                            className="w-4 h-4 rounded border-surface-600 text-brand-600 focus:ring-brand-500"
+                            className="w-4 h-4 rounded border-brand-border text-brand-primary focus:ring-brand-primary/50"
                         />
-                        <label htmlFor="enabled" className="text-sm text-surface-300">Enabled</label>
+                        <label htmlFor="enabled" className="text-sm text-on-surface-variant">Enabled</label>
                     </div>
 
                     {/* Submit */}

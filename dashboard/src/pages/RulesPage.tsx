@@ -50,12 +50,12 @@ export function RulesPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-brand-600/20 text-brand-400">
+                    <div className="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary border border-brand-primary/20">
                         <Shield size={24} />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-white">Policy Rules</h1>
-                        <p className="text-sm text-surface-400">
+                        <h1 className="text-2xl font-bold text-on-surface">Policy Rules</h1>
+                        <p className="text-sm text-on-surface-variant">
                             {rules.length} rule{rules.length !== 1 ? 's' : ''} configured
                         </p>
                     </div>
@@ -71,10 +71,12 @@ export function RulesPage() {
 
             {/* Rules Grid */}
             {rules.length === 0 ? (
-                <div className="glass-card p-12 text-center">
-                    <Shield size={48} className="mx-auto text-surface-600 mb-4" />
-                    <h3 className="text-lg font-medium text-surface-300 mb-2">No rules configured</h3>
-                    <p className="text-surface-500 mb-4">Create your first policy rule to start guarding tool calls.</p>
+                <div className="soft-card p-12 text-center border-dashed border-2 hover:border-brand-primary/30 transition-colors duration-300 shadow-none">
+                    <div className="inline-flex p-4 rounded-full bg-brand-bg mb-4">
+                        <Shield size={40} className="mx-auto text-brand-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-on-surface mb-2">No rules configured</h3>
+                    <p className="text-on-surface-variant mb-6 max-w-sm mx-auto">Create your first policy rule to start guarding tool calls with Guardian Agent.</p>
                     <button
                         onClick={() => setModalOpen(true)}
                         className="btn-primary"
