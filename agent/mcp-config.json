@@ -8,8 +8,8 @@
   {
     "name": "chaos-observability",
     "transport": "stdio",
-    "command": "npx",
-    "args": ["tsx", "../mcp-server-chaos/src/index.ts"]
+    "command": "node",
+    "args": ["../mcp-server-chaos/dist/index.js"]
   },
   {
     "name": "filesystem",
