@@ -8,6 +8,22 @@ const __dirname = path.dirname(__filename);
 
 let dbInstance: Database.Database | null = null;
 
+function resolveSchemaPath(): string {
+  const candidatePaths = [
+    path.join(__dirname, 'schema.sql'),
+    path.resolve(__dirname, '../../src/db/schema.sql'),
+    path.resolve(process.cwd(), 'src/db/schema.sql'),
+  ];
+
+  for (const candidate of candidatePaths) {
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  throw new Error(`Database schema file not found. Checked: ${candidatePaths.join(', ')}`);
+}
+
 export function getDatabase(): Database.Database {
   if (dbInstance) return dbInstance;
 
@@ -27,7 +43,7 @@ export function getDatabase(): Database.Database {
   dbInstance.pragma('foreign_keys = ON');
 
   // Run schema migrations
-  const schemaPath = path.join(__dirname, 'schema.sql');
+  const schemaPath = resolveSchemaPath();
   const schema = fs.readFileSync(schemaPath, 'utf-8');
   dbInstance.exec(schema);
 
