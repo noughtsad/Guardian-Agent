@@ -1,0 +1,12 @@
+.git
+.gitignore
+.vscode
+.idea
+node_modules
+dashboard
+agent/data
+mcp-server/data
+**/node_modules
+**/dist
+**/build
+*.log
