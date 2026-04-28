@@ -1,8 +1,8 @@
-# 🛡️ ArmorIQ — Guarded AI Agent
+# 🛡️ Guardian Agent
 
 A full-stack AI agent application with real-time policy guardrails and an admin dashboard.
 
-**ArmorIQ** intercepts every tool call made by an LLM-powered agent and enforces admin-defined rules — blocking, requiring approval, or transforming inputs — before execution.
+**Guardian Agent** intercepts every tool call made by an LLM-powered agent and enforces admin-defined rules — blocking, requiring approval, or transforming inputs — before execution.
 
 ---
 
